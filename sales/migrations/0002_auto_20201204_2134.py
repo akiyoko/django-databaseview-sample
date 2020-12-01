@@ -11,8 +11,8 @@ def code(apps, schema_editor):
                 SELECT
                     ROW_NUMBER() OVER() AS id,
                     t.sales_month,
-                    SUM(r.amount) AS total_amount,
-                    SUM(t.amount) AS target_amount
+                    t.amount AS target_amount,
+                    SUM(r.amount) AS total_amount
                 FROM
                     sales_target t
                 LEFT OUTER JOIN
@@ -30,8 +30,8 @@ def code(apps, schema_editor):
                 SELECT
                     ROW_NUMBER() OVER() AS id,
                     t.sales_month,
-                    SUM(r.amount) AS total_amount,
-                    SUM(t.amount) AS target_amount
+                    t.amount AS target_amount,
+                    SUM(r.amount) AS total_amount
                 FROM
                     sales_target t
                 LEFT OUTER JOIN
@@ -39,7 +39,7 @@ def code(apps, schema_editor):
                 ON
                     TO_CHAR(t.sales_month, 'YYYY-MM') = TO_CHAR(r.sales_date, 'YYYY-MM')
                 GROUP BY
-                    t.sales_month
+                    t.sales_month, t.amount
                 ORDER BY
                     t.sales_month;
         """)
@@ -49,7 +49,7 @@ def code(apps, schema_editor):
                 SELECT
                     ROW_NUMBER() OVER() AS id,
                     t.sales_month,
-                    SUM(t.amount) AS target_amount,
+                    t.amount AS target_amount,
                     SUM(r.amount) AS total_amount
                 FROM
                     sales_target t

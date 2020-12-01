@@ -33,6 +33,8 @@ class SalesResult(models.Model):
 
 
 class SalesResultPerMonth(models.Model):
+    """月別合計売上金額モデル"""
+
     class Meta:
         managed = False
         db_table = 'sales_result_per_month'
