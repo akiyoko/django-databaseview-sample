@@ -6,6 +6,6 @@ def format_yen(value: int) -> str:
         return f'{value:,} 円'
 
 
-def format_yyyy_gatsu_mm_nichi(value: datetime) -> str:
+def format_yyyy_nen_mm_gatsu(value: datetime) -> str:
     if value is not None:
-        return value.strftime('%Y月%m日')
+        return value.strftime('%Y年%m月')

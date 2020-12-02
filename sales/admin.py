@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from common.helpers.admin_helper import format_yen, format_yyyy_gatsu_mm_nichi
+from common.helpers.admin_helper import format_yen, format_yyyy_nen_mm_gatsu
 from .models import SalesResult, SalesResultPerMonth, SalesTarget
 
 
@@ -35,7 +35,7 @@ class SalesTargetAdmin(admin.ModelAdmin):
     ordering = ('sales_month',)
 
     def format_sales_month(self, obj):
-        return format_yyyy_gatsu_mm_nichi(obj.sales_month)
+        return format_yyyy_nen_mm_gatsu(obj.sales_month)
 
     format_sales_month.short_description = '売上月'
     format_sales_month.admin_order_field = 'sales_month'
@@ -62,7 +62,7 @@ class SalesResultPerMonthAdmin(admin.ModelAdmin):
     ordering = ('sales_month',)
 
     def format_sales_month(self, obj):
-        return format_yyyy_gatsu_mm_nichi(obj.sales_month)
+        return format_yyyy_nen_mm_gatsu(obj.sales_month)
 
     format_sales_month.short_description = '売上月'
     format_sales_month.admin_order_field = 'sales_month'
